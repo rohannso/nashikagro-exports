@@ -263,7 +263,7 @@
     </div>
     <div class="frow">
       <div class="fg"><label>Email</label><input type="email" id="femail" placeholder="you@company.com" required/></div>
-      <div class="fg"><label>Country</label><input type="text" id="fcountry" placeholder="Your country"/></div>
+      <div class="fg"><label>Contact Number (with country code)</label><input type="tel" id="fphone" placeholder="e.g. +91 9876543210" required pattern="^\\+?[0-9\s-]{7,}$"/></div>
     </div>
     <div class="fg">
       <label>Product of Interest</label>
@@ -305,16 +305,18 @@ document.getElementById('cform').addEventListener('submit', function(e) {
   var name    = document.getElementById('fname').value.trim();
   var company = document.getElementById('fcompany').value.trim();
   var email   = document.getElementById('femail').value.trim();
-  var country = document.getElementById('fcountry').value.trim();
+  var phone   = document.getElementById('fphone').value.trim();
+  var country = document.getElementById('fcountry') ? document.getElementById('fcountry').value.trim() : '';
   var product = document.getElementById('fproduct').value;
   var message = document.getElementById('fmsg').value.trim();
   var lines = ['*New Enquiry - Sai Prasad Marketing*', ''];
   lines.push('*Name:* ' + name);
   if (company) lines.push('*Company:* ' + company);
   lines.push('*Email:* ' + email);
+  if (phone) lines.push('*Contact Number:* ' + phone);
   if (country) lines.push('*Country:* ' + country);
   if (product) lines.push('*Product:* ' + product);
-  if (message) lines.push('*Message:*' + message);
+  if (message) lines.push('*Message:* ' + message);
   window.open('https://wa.me/919096800135?text=' + encodeURIComponent(lines.join('\n')), '_blank');
   var btn = document.querySelector('.fsub');
   btn.textContent = 'Opening WhatsApp...';
